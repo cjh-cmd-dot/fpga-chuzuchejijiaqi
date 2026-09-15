@@ -1,0 +1,204 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.53 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.53 secs
+ 
+--> Reading design: Control.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Control.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Control"
+Output Format                      : NGC
+Target Device                      : xc3s50an-5-tqg144
+
+---- Source Options
+Top Module Name                    : Control
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "clk_gen.v" in library work
+Compiling verilog file "Three_KM_judge.v" in library work
+Module <clk_gen> compiled
+Compiling verilog file "Speed_Slow_judge.v" in library work
+Module <Three_KM_judge> compiled
+Compiling verilog file "Speed_meter.v" in library work
+Module <Speed_Slow_judge> compiled
+Compiling verilog file "Seg.v" in library work
+Module <Speed_meter> compiled
+Compiling verilog file "LED.v" in library work
+Module <Seg> compiled
+Compiling verilog file "Cost.v" in library work
+Module <LED> compiled
+Compiling verilog file "Control.v" in library work
+Module <Cost> compiled
+Module <Control> compiled
+No errors in compilation
+Analysis of file <"Control.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Control> in library <work> with parameters.
+	CNT_MAX = "11110100001000111111"
+	DISPLAY = "10"
+	STOP = "00"
+	WORK = "01"
+
+Analyzing hierarchy for module <LED> in library <work>.
+
+Analyzing hierarchy for module <Speed_meter> in library <work> with parameters.
+	CLK_STAND_FREQ = "0101111101011110000100000000"
+	CNT_GATE_S_MAX = "0100011110000110100010111111"
+	CNT_RISE_MAX = "0000101111101011110000011111"
+
+Analyzing hierarchy for module <Three_KM_judge> in library <work> with parameters.
+	TRAVEL_3KM = "10111011100"
+
+Analyzing hierarchy for module <Speed_Slow_judge> in library <work> with parameters.
+	SLOW_SPEED = "00000000000000000000000000000001"
+
+Analyzing hierarchy for module <Cost> in library <work> with parameters.
+	CNT_10S_MAX = "11101110011010110010100000000"
+	CNT_25_MAX = "11001"
+	COST_ACC_MAX = "10011010110101"
+	Cost_0_1 = "00000000000000000000000000000001"
+
+Analyzing hierarchy for module <Seg> in library <work> with parameters.
+	disp0 = "11000000"
+	disp1 = "11111001"
+	disp2 = "10100100"
+	disp3 = "10110000"
+	disp4 = "10011001"
+	disp5 = "10010010"
+	disp6 = "10000010"
+	disp7 = "11111000"
+	disp8 = "10000000"
+	disp9 = "10010000"
+	dispa = "10001000"
+	dispb = "10000011"
+	dispc = "10100111"
+	dispd = "10100001"
+	dispe = "10000110"
+	dispf = "10000011"
+
+Analyzing hierarchy for module <clk_gen> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Control>.
+	CNT_MAX = 20'b11110100001000111111
+	DISPLAY = 2'b10
+	STOP = 2'b00
+	WORK = 2'b01
+WARNING:Xst:852 - "Control.v" line 140: Unconnected input port 'cstate' of instance 'Speed_Slow_judge_inst' is tied to GND.
+Module <Control> is correct for synthesis.
+ 
+Analyzing module <LED> in library <work>.
+Module <LED> is correct for synthesis.
+ 
+Analyzing module <Speed_meter> in library <work>.
+	CLK_STAND_FREQ = 28'b0101111101011110000100000000
+	CNT_GATE_S_MAX = 28'b0100011110000110100010111111
+	CNT_RISE_MAX = 28'b0000101111101011110000011111
+ERROR:Xst:870 - "Speed_meter.v" line 151: Can not simplify operator DIV.
+ 
+Found 1 error(s). Aborting synthesis.
+--> 
+
+Total memory usage is 4515456 kilobytes
+
+Number of errors   :    1 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

@@ -1,0 +1,8 @@
+verilog work "clk_gen.v"
+verilog work "Three_KM_judge.v"
+verilog work "Speed_Slow_judge.v"
+verilog work "Speed_meter.v"
+verilog work "Seg.v"
+verilog work "LED.v"
+verilog work "Cost.v"
+verilog work "Control.v"
