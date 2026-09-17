@@ -15,7 +15,7 @@ module clk_gen
         .CLKFX_MULTIPLY        (2),
         .CLKFX_DIVIDE          (1),
         .CLKIN_DIVIDE_BY_2     ("FALSE"),
-        .CLKIN_PERIOD          (20.0),
+        .CLKIN_PERIOD          (83.333),
         .CLKOUT_PHASE_SHIFT    ("NONE"),
         .DESKEW_ADJUST         ("SYSTEM_SYNCHRONOUS"),
         .DFS_FREQUENCY_MODE    ("LOW"),

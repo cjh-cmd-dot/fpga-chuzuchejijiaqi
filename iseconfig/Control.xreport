@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2026-09-15T11:13:36</DateModified>
+  <DateModified>2026-09-17T10:39:24</DateModified>
   <ModuleName>Control</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>C:/Users/26318/Desktop/Fpga_Study/chuzuchejijiaqi/iseconfig/Control.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/26318/Desktop/Fpga_Study/chuzuchejijiaqi</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>C:/Users/26318/Desktop/Fpga_Study/chuzuchejijiaqi\</ImplementationReportsDirectory>
   <DateInitialized>2026-09-15T09:29:37</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

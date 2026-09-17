@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi\impact.xsl
+OUTFILE=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi\impact.xsl
+FAMILY=Single
+PART=Single
+WORKINGDIR=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi
+LICENSE=iMPACT
+USER_INFO=iMPACT

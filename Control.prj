@@ -1,4 +1,3 @@
-verilog work "clk_gen.v"
 verilog work "Three_KM_judge.v"
 verilog work "Speed_Slow_judge.v"
 verilog work "Speed_meter.v"

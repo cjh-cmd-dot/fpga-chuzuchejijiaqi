@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#212121"/>
+    </marker>
+    <style>
+      .module { fill:#fff; stroke:#424242; stroke-width:2; }
+      .input { fill:#e8eaf6; stroke:#424242; stroke-width:1.5; }
+      .output { fill:#e8f5e9; stroke:#2e7d32; stroke-width:1.5; }
+      .top { fill:#e3f2fd; stroke:#1565c0; stroke-width:2.5; }
+      .line { fill:none; stroke:#212121; stroke-width:1.6; marker-end:url(#arrow); }
+      .title { font-family:Microsoft YaHei, SimHei, Arial, sans-serif; font-size:22px; font-weight:bold; fill:#212121; }
+      .text { font-family:Microsoft YaHei, SimHei, Arial, sans-serif; font-size:16px; fill:#212121; }
+      .small { font-family:Microsoft YaHei, SimHei, Arial, sans-serif; font-size:13px; fill:#212121; }
+      .note { font-family:Microsoft YaHei, SimHei, Arial, sans-serif; font-size:14px; fill:#555; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="#fafafa"/>
+  <text x="800" y="38" text-anchor="middle" class="title">出租车计价器顶层模块连接框图（按 Control.v）</text>
+
+  <!-- External inputs -->
+  <rect x="35" y="120" width="165" height="48" rx="8" class="input"/>
+  <text x="117" y="150" text-anchor="middle" class="text">sys_clk</text>
+  <rect x="35" y="215" width="165" height="48" rx="8" class="input"/>
+  <text x="117" y="245" text-anchor="middle" class="text">sys_rst_n</text>
+  <rect x="35" y="310" width="165" height="48" rx="8" class="input"/>
+  <text x="117" y="340" text-anchor="middle" class="text">dip_sw</text>
+  <rect x="35" y="405" width="165" height="48" rx="8" class="input"/>
+  <text x="117" y="435" text-anchor="middle" class="text">clk_test</text>
+
+  <!-- Top module -->
+  <rect x="270" y="205" width="205" height="180" rx="10" class="top"/>
+  <text x="372" y="292" text-anchor="middle" class="title">Control</text>
+  <text x="372" y="320" text-anchor="middle" class="small">顶层模块</text>
+
+  <path d="M200 144 H270" class="line"/>
+  <path d="M200 239 H270" class="line"/>
+  <path d="M200 334 H270" class="line"/>
+  <path d="M200 429 H235 V350 H270" class="line"/>
+
+  <!-- Internal modules -->
+  <rect x="570" y="75" width="220" height="70" rx="8" class="module"/>
+  <text x="680" y="117" text-anchor="middle" class="text">LED</text>
+
+  <rect x="570" y="190" width="220" height="70" rx="8" class="module"/>
+  <text x="680" y="232" text-anchor="middle" class="text">Speed_meter</text>
+
+  <rect x="570" y="305" width="220" height="70" rx="8" class="module"/>
+  <text x="680" y="347" text-anchor="middle" class="text">Three_KM_judge</text>
+
+  <rect x="570" y="420" width="220" height="70" rx="8" class="module"/>
+  <text x="680" y="462" text-anchor="middle" class="text">Speed_Slow_judge</text>
+
+  <rect x="930" y="245" width="220" height="90" rx="8" class="module"/>
+  <text x="1040" y="285" text-anchor="middle" class="text">Cost</text>
+  <text x="1040" y="310" text-anchor="middle" class="small">费用计算</text>
+
+  <rect x="1230" y="245" width="220" height="90" rx="8" class="module"/>
+  <text x="1340" y="285" text-anchor="middle" class="text">Seg</text>
+  <text x="1340" y="310" text-anchor="middle" class="small">数码管显示</text>
+
+  <!-- Control fanout and instance port maps -->
+  <path d="M475 225 H520 V110 H570" class="line"/>
+  <text x="505" y="101" text-anchor="middle" class="small">sys_clk, sys_rst_n, cstate</text>
+
+  <path d="M475 250 H535 V225 H570" class="line"/>
+  <text x="515" y="213" text-anchor="middle" class="small">clk=sys_clk, rst_n=sys_rst_n, clk_test</text>
+
+  <path d="M475 280 H535 V340 H570" class="line"/>
+  <text x="510" y="330" text-anchor="middle" class="small">sys_clk, clk_test, sys_rst_n, cstate</text>
+
+  <path d="M475 310 H520 V455 H570" class="line"/>
+  <text x="500" y="445" text-anchor="middle" class="small">sys_clk, sys_rst_n</text>
+
+  <path d="M475 340 H540 V290 H930" class="line"/>
+  <text x="700" y="281" text-anchor="middle" class="small">sys_clk, sys_rst_n, clk_test, cstate</text>
+
+  <path d="M475 365 H525 V540 H1200 V320 H1230" class="line"/>
+  <text x="835" y="531" text-anchor="middle" class="small">clk=sys_clk, rst_n=sys_rst_n, en=1, point=4'b0001</text>
+
+  <!-- Inter-module signals -->
+  <path d="M790 225 H850 V455 H790" class="line"/>
+  <text x="835" y="442" text-anchor="middle" class="small">freq[33:0]</text>
+
+  <path d="M790 340 H860 V265 H930" class="line"/>
+  <text x="855" y="255" text-anchor="middle" class="small">Three_KM_flag</text>
+
+  <path d="M790 455 H875 V315 H930" class="line"/>
+  <text x="860" y="350" text-anchor="middle" class="small">Slow_speed_flag</text>
+
+  <path d="M1150 290 H1230" class="line"/>
+  <text x="1190" y="281" text-anchor="middle" class="small">Cost_out[15:0]</text>
+
+  <!-- External outputs -->
+  <rect x="1485" y="155" width="105" height="48" rx="8" class="output"/>
+  <text x="1537" y="185" text-anchor="middle" class="text">LED_out</text>
+  <path d="M790 110 H1460 V179 H1485" class="line"/>
+
+  <rect x="1485" y="255" width="105" height="48" rx="8" class="output"/>
+  <text x="1537" y="285" text-anchor="middle" class="text">seg[7:0]</text>
+  <path d="M1450 275 H1485" class="line"/>
+
+  <rect x="1485" y="355" width="105" height="48" rx="8" class="output"/>
+  <text x="1537" y="385" text-anchor="middle" class="text">sel[3:0]</text>
+  <path d="M1450 315 H1465 V379 H1485" class="line"/>
+
+  <text x="35" y="555" class="note">注：clk_gen.v 当前未被 Speed_meter.v 实例化，不属于本图的有效顶层连线。</text>
+</svg>

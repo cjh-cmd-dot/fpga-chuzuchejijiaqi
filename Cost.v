@@ -1,30 +1,11 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    09:17:01 09/15/2026 
-// Design Name: 
-// Module Name:    Cost 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module Cost
 #(
     parameter           Cost_0_1 = 1,
-    parameter           CNT_25_MAX = 5'd25,
+    parameter           CNT_25_MAX = 5'd24,
     parameter           COST_ACC_MAX = 14'd9909,
-    parameter           CNT_10S_MAX = 29'd500_000_000
+    parameter           CNT_10S_MAX = 29'd119_999_999
 )
 (
     input wire          sys_clk,
@@ -38,8 +19,10 @@ module Cost
 );
     reg [15:0]          Cost_out_reg;
 
-    reg                 cstate_t;
-    reg                 cstate_po;
+    reg                 was_work;
+    wire                enter_work;
+
+    assign enter_work = cstate == 2'b01 && !was_work;
 
     reg                 clk_test_t;
     reg                 clk_test_po;
@@ -49,10 +32,8 @@ module Cost
     reg [3:0]           Cost_acc_hun;
     reg [3:0]           Cost_acc_tho;
 
-    reg [4:0]           CNT_25;              //一分钱走25圈
-
-    reg [28:0]          cnt_10s;             //记十秒
-
+    reg [4:0]           CNT_25;
+    reg [28:0]          cnt_10s;
     always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         clk_test_t <= 1'b0;
@@ -67,19 +48,11 @@ module Cost
     else
         clk_test_po <= 1'b0;
 
-    always @(posedge clk_test or negedge sys_rst_n)
+    always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
-        cstate_t <= 1'b0;
+        was_work <= 1'b0;
     else
-        cstate_t <= cstate[0];
-
-    always @(posedge clk_test or negedge sys_rst_n)
-    if(!sys_rst_n)
-        cstate_po <= 1'b0;
-    else if(cstate[0] && !cstate_t)
-        cstate_po <= 1'b1;
-    else 
-        cstate_po <= 1'b0;
+        was_work <= (cstate == 2'b01);
 
     always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
@@ -99,12 +72,12 @@ module Cost
 
 
 
-    /*三公里后的车费累加*/
-
     always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         Cost_acc_unit <= 4'd0;
     else if(cstate == 2'b00)
+        Cost_acc_unit <= 4'd0;
+    else if(enter_work)
         Cost_acc_unit <= 4'd0;
     else if(!Slow_speed_flag && Three_KM_flag && cstate == 2'b01)begin
         if(Cost_acc_unit == 4'd9 && CNT_25 == CNT_25_MAX && clk_test_po)
@@ -126,10 +99,10 @@ module Cost
     always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         Cost_acc_ten <= 4'd0;
-    else if(cstate_po)
-        Cost_acc_ten <= 4'd9;
     else if(cstate == 2'b00)
         Cost_acc_ten <= 4'd0;
+    else if(enter_work)
+        Cost_acc_ten <= 4'd9;
     else if(!Slow_speed_flag && Three_KM_flag && cstate == 2'b01)begin
         if(Cost_acc_ten == 4'd9 && Cost_acc_unit == 4'd9 && CNT_25 == CNT_25_MAX && clk_test_po)
             Cost_acc_ten <= 4'd0;
@@ -150,6 +123,8 @@ module Cost
     if(!sys_rst_n)
         Cost_acc_hun <= 4'd0;
     else if(cstate == 2'b00)
+        Cost_acc_hun <= 4'd0;
+    else if(enter_work)
         Cost_acc_hun <= 4'd0;
     else if(!Slow_speed_flag && Three_KM_flag && cstate == 2'b01)begin
         if(Cost_acc_hun == 4'd9 && Cost_acc_ten == 4'd9 && Cost_acc_unit == 4'd9 && CNT_25 == CNT_25_MAX && clk_test_po)
@@ -172,6 +147,8 @@ module Cost
         Cost_acc_tho <= 4'd0;
     else if(cstate == 2'b00)
         Cost_acc_tho <= 4'd0;
+    else if(enter_work)
+        Cost_acc_tho <= 4'd0;
     else if(!Slow_speed_flag && Three_KM_flag && cstate == 2'b01)begin
         if(Cost_acc_tho == 4'd9 && Cost_acc_hun == 4'd9 && Cost_acc_ten == 4'd9 && Cost_acc_unit == 4'd9 && CNT_25 == CNT_25_MAX && clk_test_po)
             Cost_acc_tho <= 4'd0;
@@ -188,7 +165,6 @@ module Cost
         Cost_acc_tho <= Cost_acc_tho;
     
 
-    /*总车费计算*/
     always @(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         Cost_out_reg <= 14'd0;

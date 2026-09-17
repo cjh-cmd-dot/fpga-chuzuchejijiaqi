@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.53 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.53 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Reading design: Control.prj
 
@@ -104,9 +104,7 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling verilog file "clk_gen.v" in library work
 Compiling verilog file "Three_KM_judge.v" in library work
-Module <clk_gen> compiled
 Compiling verilog file "Speed_Slow_judge.v" in library work
 Module <Three_KM_judge> compiled
 Compiling verilog file "Speed_meter.v" in library work
@@ -128,7 +126,7 @@ Analysis of file <"Control.prj"> succeeded.
 *                     Design Hierarchy Analysis                         *
 =========================================================================
 Analyzing hierarchy for module <Control> in library <work> with parameters.
-	CNT_MAX = "11110100001000111111"
+	DIP_DEBOUNCE_MAX = "111010100101111111"
 	DISPLAY = "10"
 	STOP = "00"
 	WORK = "01"
@@ -136,9 +134,7 @@ Analyzing hierarchy for module <Control> in library <work> with parameters.
 Analyzing hierarchy for module <LED> in library <work>.
 
 Analyzing hierarchy for module <Speed_meter> in library <work> with parameters.
-	CLK_STAND_FREQ = "0101111101011110000100000000"
-	CNT_GATE_S_MAX = "0100011110000110100010111111"
-	CNT_RISE_MAX = "0000101111101011110000011111"
+	CLK_FREQ_HZ = 12000000
 
 Analyzing hierarchy for module <Three_KM_judge> in library <work> with parameters.
 	TRAVEL_3KM = "10111011100"
@@ -147,58 +143,570 @@ Analyzing hierarchy for module <Speed_Slow_judge> in library <work> with paramet
 	SLOW_SPEED = "00000000000000000000000000000001"
 
 Analyzing hierarchy for module <Cost> in library <work> with parameters.
-	CNT_10S_MAX = "11101110011010110010100000000"
-	CNT_25_MAX = "11001"
+	CNT_10S_MAX = "00111001001110000110111111111"
+	CNT_25_MAX = "11000"
 	COST_ACC_MAX = "10011010110101"
 	Cost_0_1 = "00000000000000000000000000000001"
 
 Analyzing hierarchy for module <Seg> in library <work> with parameters.
-	disp0 = "11000000"
-	disp1 = "11111001"
-	disp2 = "10100100"
-	disp3 = "10110000"
-	disp4 = "10011001"
-	disp5 = "10010010"
-	disp6 = "10000010"
-	disp7 = "11111000"
-	disp8 = "10000000"
-	disp9 = "10010000"
-	dispa = "10001000"
-	dispb = "10000011"
-	dispc = "10100111"
-	dispd = "10100001"
-	dispe = "10000110"
-	dispf = "10000011"
-
-Analyzing hierarchy for module <clk_gen> in library <work>.
+	disp0 = "00111111"
+	disp1 = "00000110"
+	disp2 = "01011011"
+	disp3 = "01001111"
+	disp4 = "01100110"
+	disp5 = "01101101"
+	disp6 = "01111101"
+	disp7 = "00000111"
+	disp8 = "01111111"
+	disp9 = "01101111"
+	dispa = "01110111"
+	dispb = "01111100"
+	dispc = "00111001"
+	dispd = "01011110"
+	dispe = "01111001"
+	dispf = "01111100"
 
 
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing top module <Control>.
-	CNT_MAX = 20'b11110100001000111111
+	DIP_DEBOUNCE_MAX = 18'b111010100101111111
 	DISPLAY = 2'b10
 	STOP = 2'b00
 	WORK = 2'b01
-WARNING:Xst:852 - "Control.v" line 140: Unconnected input port 'cstate' of instance 'Speed_Slow_judge_inst' is tied to GND.
 Module <Control> is correct for synthesis.
  
 Analyzing module <LED> in library <work>.
 Module <LED> is correct for synthesis.
  
 Analyzing module <Speed_meter> in library <work>.
-	CLK_STAND_FREQ = 28'b0101111101011110000100000000
-	CNT_GATE_S_MAX = 28'b0100011110000110100010111111
-	CNT_RISE_MAX = 28'b0000101111101011110000011111
-ERROR:Xst:870 - "Speed_meter.v" line 151: Can not simplify operator DIV.
+	CLK_FREQ_HZ = 12000000
+Module <Speed_meter> is correct for synthesis.
  
-Found 1 error(s). Aborting synthesis.
+Analyzing module <Three_KM_judge> in library <work>.
+	TRAVEL_3KM = 11'b10111011100
+Module <Three_KM_judge> is correct for synthesis.
+ 
+Analyzing module <Speed_Slow_judge> in library <work>.
+	SLOW_SPEED = 32'sb00000000000000000000000000000001
+Module <Speed_Slow_judge> is correct for synthesis.
+ 
+Analyzing module <Cost> in library <work>.
+	CNT_10S_MAX = 29'b00111001001110000110111111111
+	CNT_25_MAX = 5'b11000
+	COST_ACC_MAX = 14'b10011010110101
+	Cost_0_1 = 32'sb00000000000000000000000000000001
+Module <Cost> is correct for synthesis.
+ 
+Analyzing module <Seg> in library <work>.
+	disp0 = 8'b00111111
+	disp1 = 8'b00000110
+	disp2 = 8'b01011011
+	disp3 = 8'b01001111
+	disp4 = 8'b01100110
+	disp5 = 8'b01101101
+	disp6 = 8'b01111101
+	disp7 = 8'b00000111
+	disp8 = 8'b01111111
+	disp9 = 8'b01101111
+	dispa = 8'b01110111
+	dispb = 8'b01111100
+	dispc = 8'b00111001
+	dispd = 8'b01011110
+	dispe = 8'b01111001
+	dispf = 8'b01111100
+Module <Seg> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <LED>.
+    Related source file is "LED.v".
+    Found 4x1-bit ROM for signal <LED_out$mux0000>.
+    Found 1-bit register for signal <LED_out>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 D-type flip-flop(s).
+Unit <LED> synthesized.
+
+
+Synthesizing Unit <Speed_meter>.
+    Related source file is "Speed_meter.v".
+    Found 34-bit register for signal <freq>.
+    Found 1-bit register for signal <clk_test_meta>.
+    Found 1-bit register for signal <clk_test_sync>.
+    Found 1-bit register for signal <clk_test_sync_d>.
+    Found 34-bit adder for signal <freq$add0000> created at line 52.
+    Found 34-bit up counter for signal <pulse_count>.
+    Found 24-bit up counter for signal <sample_count>.
+    Summary:
+	inferred   2 Counter(s).
+	inferred  37 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <Speed_meter> synthesized.
+
+
+Synthesizing Unit <Three_KM_judge>.
+    Related source file is "Three_KM_judge.v".
+    Found 1-bit register for signal <Three_KM_flag>.
+    Found 11-bit up counter for signal <cnt_Three_KM>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <Three_KM_judge> synthesized.
+
+
+Synthesizing Unit <Speed_Slow_judge>.
+    Related source file is "Speed_Slow_judge.v".
+    Found 1-bit register for signal <Slow_speed_flag>.
+    Found 34-bit comparator lessequal for signal <Slow_speed_flag$cmp_le0000> created at line 16.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <Speed_Slow_judge> synthesized.
+
+
+Synthesizing Unit <Cost>.
+    Related source file is "Cost.v".
+    Found 16-bit register for signal <Cost_out>.
+    Found 1-bit register for signal <clk_test_po>.
+    Found 1-bit register for signal <clk_test_t>.
+    Found 29-bit up counter for signal <cnt_10s>.
+    Found 5-bit up counter for signal <CNT_25>.
+    Found 4-bit register for signal <Cost_acc_hun>.
+    Found 4-bit adder for signal <Cost_acc_hun$share0000>.
+    Found 4-bit register for signal <Cost_acc_ten>.
+    Found 4-bit adder for signal <Cost_acc_ten$share0000>.
+    Found 4-bit register for signal <Cost_acc_tho>.
+    Found 4-bit adder for signal <Cost_acc_tho$share0000>.
+    Found 4-bit register for signal <Cost_acc_unit>.
+    Found 4-bit adder for signal <Cost_acc_unit$share0000>.
+    Found 16-bit register for signal <Cost_out_reg>.
+    Found 1-bit register for signal <was_work>.
+    Summary:
+	inferred   2 Counter(s).
+	inferred  51 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+Unit <Cost> synthesized.
+
+
+Synthesizing Unit <Seg>.
+    Related source file is "Seg.v".
+    Found 16x7-bit ROM for signal <data_tmp$rom0000>.
+    Found 1-bit register for signal <clk_1K>.
+    Found 15-bit up counter for signal <divder_cnt>.
+    Found 4-bit register for signal <sel_r>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <Seg> synthesized.
+
+
+Synthesizing Unit <Control>.
+    Related source file is "Control.v".
+    Found finite state machine <FSM_0> for signal <cstate>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 6                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 2                                              |
+    | Clock              | sys_clk                   (rising_edge)        |
+    | Reset              | sys_rst_n                 (negative)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 18-bit register for signal <dip_debounce_cnt>.
+    Found 18-bit adder for signal <dip_debounce_cnt$addsub0000> created at line 98.
+    Found 1-bit xor2 for signal <dip_debounce_cnt$xor0000> created at line 89.
+    Found 1-bit register for signal <dip_meta>.
+    Found 1-bit register for signal <dip_stable>.
+    Found 1-bit register for signal <dip_sync>.
+    Found 1-bit register for signal <dip_toggle_pulse>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  22 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <Control> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 16x7-bit ROM                                          : 1
+ 4x1-bit ROM                                           : 1
+# Adders/Subtractors                                   : 6
+ 18-bit adder                                          : 1
+ 34-bit adder                                          : 1
+ 4-bit adder                                           : 4
+# Counters                                             : 6
+ 11-bit up counter                                     : 1
+ 15-bit up counter                                     : 1
+ 24-bit up counter                                     : 1
+ 29-bit up counter                                     : 1
+ 34-bit up counter                                     : 1
+ 5-bit up counter                                      : 1
+# Registers                                            : 23
+ 1-bit register                                        : 14
+ 16-bit register                                       : 2
+ 18-bit register                                       : 1
+ 34-bit register                                       : 1
+ 4-bit register                                        : 5
+# Comparators                                          : 1
+ 34-bit comparator lessequal                           : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <cstate/FSM> on signal <cstate[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
+-------------------
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# ROMs                                                 : 2
+ 16x7-bit ROM                                          : 1
+ 4x1-bit ROM                                           : 1
+# Adders/Subtractors                                   : 6
+ 18-bit adder                                          : 1
+ 34-bit adder                                          : 1
+ 4-bit adder                                           : 4
+# Counters                                             : 6
+ 11-bit up counter                                     : 1
+ 15-bit up counter                                     : 1
+ 24-bit up counter                                     : 1
+ 29-bit up counter                                     : 1
+ 34-bit up counter                                     : 1
+ 5-bit up counter                                      : 1
+# Registers                                            : 118
+ Flip-Flops                                            : 118
+# Comparators                                          : 1
+ 34-bit comparator lessequal                           : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <Control> ...
+
+Optimizing unit <Speed_meter> ...
+
+Optimizing unit <Three_KM_judge> ...
+
+Optimizing unit <Cost> ...
+
+Optimizing unit <Seg> ...
+WARNING:Xst:2677 - Node <Speed_meter_inst/freq_0> of sequential type is unconnected in block <Control>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <Speed_meter_inst/clk_test_meta> in Unit <Control> is equivalent to the following FF/Latch, which will be removed : <Cost_inst/clk_test_t> 
+Found area constraint ratio of 100 (+ 5) on block Control, actual ratio is 34.
+FlipFlop cstate_FSM_FFd2 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 237
+ Flip-Flops                                            : 237
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Control.ngr
+Top Level Output File Name         : Control
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 17
+
+Cell Usage :
+# BELS                             : 802
+#      GND                         : 1
+#      INV                         : 13
+#      LUT1                        : 159
+#      LUT2                        : 85
+#      LUT2_L                      : 1
+#      LUT3                        : 67
+#      LUT3_D                      : 3
+#      LUT3_L                      : 2
+#      LUT4                        : 100
+#      LUT4_D                      : 10
+#      LUT4_L                      : 4
+#      MUXCY                       : 186
+#      MUXF5                       : 6
+#      VCC                         : 1
+#      XORCY                       : 164
+# FlipFlops/Latches                : 237
+#      FDC                         : 117
+#      FDCE                        : 115
+#      FDP                         : 4
+#      FDPE                        : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 16
+#      IBUF                        : 3
+#      OBUF                        : 13
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50antqg144-5 
+
+ Number of Slices:                      242  out of    704    34%  
+ Number of Slice Flip Flops:            237  out of   1408    16%  
+ Number of 4 input LUTs:                444  out of   1408    31%  
+ Number of IOs:                          17
+ Number of bonded IOBs:                  17  out of    108    15%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+sys_clk                            | BUFGP                  | 217   |
+clk_test                           | IBUF+BUFG              | 16    |
+Seg_inst/clk_1K                    | NONE(Seg_inst/sel_r_0) | 4     |
+-----------------------------------+------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-------------------------------------------------------------------+-------------------------+-------+
+Control Signal                                                     | Buffer(FF name)         | Load  |
+-------------------------------------------------------------------+-------------------------+-------+
+Cost_inst/sys_rst_n_inv(Three_KM_judge_inst/sys_rst_n_inv1_INV_0:O)| NONE(Cost_inst/CNT_25_0)| 237   |
+-------------------------------------------------------------------+-------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 7.093ns (Maximum Frequency: 140.994MHz)
+   Minimum input arrival time before clock: 2.100ns
+   Maximum output required time after clock: 9.373ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sys_clk'
+  Clock period: 7.093ns (frequency: 140.994MHz)
+  Total number of paths / destination ports: 9261 / 314
+-------------------------------------------------------------------------
+Delay:               7.093ns (Levels of Logic = 6)
+  Source:            Cost_inst/Cost_acc_ten_0 (FF)
+  Destination:       Cost_inst/Cost_acc_ten_3 (FF)
+  Source Clock:      sys_clk rising
+  Destination Clock: sys_clk rising
+
+  Data Path: Cost_inst/Cost_acc_ten_0 to Cost_inst/Cost_acc_ten_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              8   0.495   0.645  Cost_inst/Cost_acc_ten_0 (Cost_inst/Cost_acc_ten_0)
+     LUT4_D:I3->O          3   0.561   0.474  Cost_inst/Cost_acc_ten_cmp_eq00001 (Cost_inst/Cost_acc_ten_cmp_eq0000)
+     LUT4:I2->O            6   0.561   0.635  Cost_inst/Cost_acc_tho_and000011 (Cost_inst/Cost_acc_ten_and0000)
+     LUT3:I1->O            1   0.562   0.359  Cost_inst/Cost_acc_ten_mux0000<1>125_SW2 (N42)
+     LUT4:I3->O            5   0.561   0.561  Cost_inst/Cost_acc_ten_mux0000<1>125 (Cost_inst/N3)
+     LUT3:I2->O            1   0.561   0.359  Cost_inst/Cost_acc_ten_mux0000<0>2 (Cost_inst/Cost_acc_ten_mux0000<0>2)
+     LUT4:I3->O            1   0.561   0.000  Cost_inst/Cost_acc_ten_mux0000<0>45 (Cost_inst/Cost_acc_ten_mux0000<0>)
+     FDC:D                     0.197          Cost_inst/Cost_acc_ten_3
+    ----------------------------------------
+    Total                      7.093ns (4.059ns logic, 3.033ns route)
+                                       (57.2% logic, 42.8% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_test'
+  Clock period: 4.997ns (frequency: 200.120MHz)
+  Total number of paths / destination ports: 348 / 27
+-------------------------------------------------------------------------
+Delay:               4.997ns (Levels of Logic = 3)
+  Source:            Three_KM_judge_inst/cnt_Three_KM_7 (FF)
+  Destination:       Three_KM_judge_inst/cnt_Three_KM_10 (FF)
+  Source Clock:      clk_test rising
+  Destination Clock: clk_test rising
+
+  Data Path: Three_KM_judge_inst/cnt_Three_KM_7 to Three_KM_judge_inst/cnt_Three_KM_10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             2   0.495   0.488  Three_KM_judge_inst/cnt_Three_KM_7 (Three_KM_judge_inst/cnt_Three_KM_7)
+     LUT4:I0->O            1   0.561   0.465  Three_KM_judge_inst/cnt_Three_KM_cmp_eq00007 (Three_KM_judge_inst/cnt_Three_KM_cmp_eq00007)
+     LUT3:I0->O           14   0.561   0.916  Three_KM_judge_inst/cnt_Three_KM_cmp_eq000032 (Three_KM_judge_inst/cnt_Three_KM_cmp_eq0000)
+     LUT3:I1->O           11   0.562   0.793  Three_KM_judge_inst/cnt_Three_KM_not00011 (Three_KM_judge_inst/cnt_Three_KM_not0001)
+     FDCE:CE                   0.156          Three_KM_judge_inst/cnt_Three_KM_0
+    ----------------------------------------
+    Total                      4.997ns (2.335ns logic, 2.662ns route)
+                                       (46.7% logic, 53.3% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Seg_inst/clk_1K'
+  Clock period: 2.026ns (frequency: 493.656MHz)
+  Total number of paths / destination ports: 7 / 4
+-------------------------------------------------------------------------
+Delay:               2.026ns (Levels of Logic = 1)
+  Source:            Seg_inst/sel_r_3 (FF)
+  Destination:       Seg_inst/sel_r_0 (FF)
+  Source Clock:      Seg_inst/clk_1K rising
+  Destination Clock: Seg_inst/clk_1K rising
+
+  Data Path: Seg_inst/sel_r_3 to Seg_inst/sel_r_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q             10   0.495   0.773  Seg_inst/sel_r_3 (Seg_inst/sel_r_3)
+     LUT4:I2->O            1   0.561   0.000  Seg_inst/data_tmp_cmp_eq00031 (Seg_inst/data_tmp_cmp_eq0003)
+     FDP:D                     0.197          Seg_inst/sel_r_0
+    ----------------------------------------
+    Total                      2.026ns (1.253ns logic, 0.773ns route)
+                                       (61.9% logic, 38.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk'
+  Total number of paths / destination ports: 3 / 3
+-------------------------------------------------------------------------
+Offset:              2.100ns (Levels of Logic = 2)
+  Source:            clk_test (PAD)
+  Destination:       Cost_inst/clk_test_po (FF)
+  Destination Clock: sys_clk rising
+
+  Data Path: clk_test to Cost_inst/clk_test_po
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.824   0.517  clk_test_IBUF (clk_test_IBUF1)
+     LUT2:I1->O            1   0.562   0.000  Cost_inst/clk_test_po_and00001 (Cost_inst/clk_test_po_and0000)
+     FDC:D                     0.197          Cost_inst/clk_test_po
+    ----------------------------------------
+    Total                      2.100ns (1.583ns logic, 0.517ns route)
+                                       (75.4% logic, 24.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk'
+  Total number of paths / destination ports: 113 / 8
+-------------------------------------------------------------------------
+Offset:              8.674ns (Levels of Logic = 5)
+  Source:            Cost_inst/Cost_out_9 (FF)
+  Destination:       seg<6> (PAD)
+  Source Clock:      sys_clk rising
+
+  Data Path: Cost_inst/Cost_out_9 to seg<6>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              1   0.495   0.380  Cost_inst/Cost_out_9 (Cost_inst/Cost_out_9)
+     LUT4:I2->O            1   0.561   0.423  Seg_inst/data_tmp<1>49 (Seg_inst/data_tmp<1>49)
+     LUT4:I1->O            1   0.562   0.000  Seg_inst/data_tmp<1>66_F (N55)
+     MUXF5:I0->O           7   0.229   0.710  Seg_inst/data_tmp<1>66 (Seg_inst/data_tmp<1>)
+     LUT4:I0->O            1   0.561   0.357  Seg_inst/Mrom_data_tmp_rom000061 (seg_6_OBUF)
+     OBUF:I->O                 4.396          seg_6_OBUF (seg<6>)
+    ----------------------------------------
+    Total                      8.674ns (6.804ns logic, 1.870ns route)
+                                       (78.4% logic, 21.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Seg_inst/clk_1K'
+  Total number of paths / destination ports: 257 / 12
+-------------------------------------------------------------------------
+Offset:              9.373ns (Levels of Logic = 5)
+  Source:            Seg_inst/sel_r_1 (FF)
+  Destination:       seg<6> (PAD)
+  Source Clock:      Seg_inst/clk_1K rising
+
+  Data Path: Seg_inst/sel_r_1 to seg<6>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              8   0.495   0.751  Seg_inst/sel_r_1 (Seg_inst/sel_r_1)
+     LUT2:I0->O            8   0.561   0.751  Seg_inst/data_tmp<3>21 (Seg_inst/data_tmp<0>21)
+     LUT3:I0->O            1   0.561   0.000  Seg_inst/data_tmp<3>66_G (N52)
+     MUXF5:I1->O           7   0.229   0.710  Seg_inst/data_tmp<3>66 (Seg_inst/data_tmp<3>)
+     LUT4:I0->O            1   0.561   0.357  Seg_inst/Mrom_data_tmp_rom000021 (seg_2_OBUF)
+     OBUF:I->O                 4.396          seg_2_OBUF (seg<2>)
+    ----------------------------------------
+    Total                      9.373ns (6.803ns logic, 2.570ns route)
+                                       (72.6% logic, 27.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 3.11 secs
+ 
 --> 
 
-Total memory usage is 4515456 kilobytes
+Total memory usage is 4531804 kilobytes
 
-Number of errors   :    1 (   0 filtered)
-Number of warnings :    2 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
 

@@ -1,32 +1,13 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    09:18:36 09/15/2026 
-// Design Name: 
-// Module Name:    Control 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module Control
 #(
-    parameter           CNT_MAX = 20'd999_999
+    parameter           DIP_DEBOUNCE_MAX = 18'd239_999
 )
 (
     input wire          sys_clk,
     input wire          sys_rst_n,
-    input wire          key_in,
+    input wire          dip_sw,
     input wire          clk_test,
 
     output wire[7:0]    seg,
@@ -34,13 +15,15 @@ module Control
     output wire[3:0]	sel
 );
 
-    parameter           STOP = 2'b00,
+    localparam          STOP = 2'b00,
                         WORK = 2'b01,
                         DISPLAY = 2'b10;
 
-    reg [19:0]          cnt_20;
-
-    reg                 key_flag;
+    reg                 dip_meta;
+    reg                 dip_sync;
+    reg                 dip_stable;
+    reg [17:0]          dip_debounce_cnt;
+    reg                 dip_toggle_pulse;
 
     reg [1:0]           cstate;
     reg [1:0]           nstate;
@@ -61,41 +44,60 @@ module Control
         cstate <= nstate;
 
     always @(*)
+    begin
+        nstate = cstate;
         case (cstate)
             STOP :
-                if(key_flag)
-                    nstate <= WORK;
-                else
-                    nstate <= STOP;
+                if(dip_toggle_pulse)
+                    nstate = WORK;
             WORK : 
-                if(key_flag)
-                    nstate <= DISPLAY;
-                else
-                    nstate <= WORK;
+                if(dip_toggle_pulse)
+                    nstate = DISPLAY;
             DISPLAY :
-                if(key_flag)
-                    nstate <= STOP;
-                else
-                    nstate <= DISPLAY;
+                if(dip_toggle_pulse)
+                    nstate = STOP;
+            default :
+                nstate = STOP;
         endcase
+    end
 
-	always @(posedge sys_clk or negedge sys_rst_n)
-	if(!sys_rst_n)
-		cnt_20<=1'b0;
-	else if(key_in==1'b1)
-		cnt_20<=1'b0;
-	else if(cnt_20==CNT_MAX &&  key_in==1'b0)
-		cnt_20<=cnt_20;
-	else
-		cnt_20<=cnt_20+1'b1;
-		
-	always @(posedge sys_clk or negedge sys_rst_n)
-	if(!sys_rst_n)
-		key_flag<=1'b0;
-	else if(cnt_20==CNT_MAX-1'b1)
-		key_flag<=1'b1;
-	else 
-		key_flag<=1'b0;
+    always @(posedge sys_clk or negedge sys_rst_n)
+    begin
+        if(!sys_rst_n)
+        begin
+            dip_meta <= 1'b1;
+            dip_sync <= 1'b1;
+        end
+        else
+        begin
+            dip_meta <= dip_sw;
+            dip_sync <= dip_meta;
+        end
+    end
+
+    always @(posedge sys_clk or negedge sys_rst_n)
+    begin
+        if(!sys_rst_n)
+        begin
+            dip_stable       <= 1'b1;
+            dip_debounce_cnt <= 18'd0;
+            dip_toggle_pulse <= 1'b0;
+        end
+        else
+        begin
+            dip_toggle_pulse <= 1'b0;
+            if(dip_sync == dip_stable)
+                dip_debounce_cnt <= 18'd0;
+            else if(dip_debounce_cnt == DIP_DEBOUNCE_MAX)
+            begin
+                dip_stable       <= dip_sync;
+                dip_debounce_cnt <= 18'd0;
+                dip_toggle_pulse <= 1'b1;
+            end
+            else
+                dip_debounce_cnt <= dip_debounce_cnt + 1'b1;
+        end
+    end
 
     LED
     LED_inst(
@@ -108,10 +110,8 @@ module Control
 
     Speed_meter
     #(
-        .CNT_RISE_MAX(28'd12_499_999),
-        .CNT_GATE_S_MAX(28'd74_999_999),
-        .CLK_STAND_FREQ(28'd100_000_000)
-    )   
+        .CLK_FREQ_HZ(12_000_000)
+    )
     Speed_meter_inst(   
         .clk            (sys_clk),
         .rst_n          (sys_rst_n),
@@ -148,9 +148,9 @@ module Control
     Cost
     #(
         .Cost_0_1 ( 1),
-        .CNT_25_MAX (5'd25),
+        .CNT_25_MAX (5'd24),
         .COST_ACC_MAX (14'd9909),
-        .CNT_10S_MAX (29'd500_000_000)
+        .CNT_10S_MAX (29'd119_999_999)
     )
     Cost_inst(
         .sys_clk            (sys_clk),
@@ -169,7 +169,7 @@ module Control
         .rst_n              (sys_rst_n),
         .disp_data          (Cost_out),
         .en                 (1'b1),
-        .point              (4'b0001),
+        .point              (4'b0100),
         
         .seg                (seg),
         .sel                (sel)

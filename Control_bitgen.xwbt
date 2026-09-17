@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi\Control.ncd
+OUTFILE=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi\Control.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s50an-5tqg144
+WORKINGDIR=C:\Users\26318\Desktop\Fpga_Study\chuzuchejijiaqi
+LICENSE=WebPack
+USER_INFO=__0_0_0

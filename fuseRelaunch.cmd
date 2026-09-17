@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "C:/Users/26318/Desktop/Fpga_Study/chuzuchejijiaqi/LED_isim_beh.exe" -prj "C:/Users/26318/Desktop/Fpga_Study/chuzuchejijiaqi/LED_beh.prj" "work.LED" "work.glbl" 
